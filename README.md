@@ -17,3 +17,10 @@
 5. Run `docker run --name sals-assignment-container -p 4567:4567 -e POSTGRES_PASSWORD=postgres -e DATABASE_URL=postgres://postgres:postgres@db:5432/gifmachine -e GIFMACHINE_PASSWORD=foo -e RACK_ENV=development --network sals-network sals-assignment` to start the application.
 6. The application will be available at `http://localhost:4567`.
 
+## Provisioning AWS Resources with Terraform
+
+1. Clone this repository.
+2. Install and Authenticate into AWS Cli with `aws configure`.
+3. Run `terraform init` to initialize the Terraform environment.
+4. Run `terraform apply` to provision the AWS resources.
+5. Run `terraform destroy` to destroy the AWS resources.
