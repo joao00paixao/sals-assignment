@@ -3,7 +3,7 @@ set -e
 
 export PGPASSWORD=$POSTGRES_PASSWORD
 
-until psql -h db -U postgres -c '\q'; do
+until psql -h localhost -U postgres -c '\q'; do
   echo "PostgreSQL is unavailable - sleeping"
   sleep 1
 done
@@ -12,7 +12,7 @@ echo "PostgreSQL is up - executing commands"
 
 gem install bundler -v 2.4.22
 bundle install
-bundle exec rake db:create
-bundle exec rake db:migrate
+bundle exec rake localhost:create
+bundle exec rake localhost:migrate
 
 exec ruby app.rb -o 0.0.0.0
