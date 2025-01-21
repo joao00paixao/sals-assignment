@@ -3,7 +3,7 @@ set -e
 
 export PGPASSWORD=$POSTGRES_PASSWORD
 
-until psql -h localhost -U postgres -c '\q'; do
+until psql -h db -U postgres -c '\q'; do
   echo "PostgreSQL is unavailable - sleeping"
   sleep 1
 done
