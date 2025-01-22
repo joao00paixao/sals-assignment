@@ -46,7 +46,7 @@ So I went back and recovered most of the code I did with Fargate and it all work
 
 ![ECS Tasks configuration panel](docs/ecs-cluster-tasks-panel.png)
 
-I "lost" the most time understanding how the builds and dependencies in Ruby AND with my oversight with rake... assuming the parameters, in total I spent around 4-5 hours. I felt confortable working with bash, Dockerfile, docker compose and github actions. Terraform with AWS was also a little bit challenging but no one can know the providers by heart.
+I "lost" the most time understanding how the builds/dependencies in Ruby worked AND with my oversight with rake... assuming the parameters were incorrect, in total I spent around 4-5 hours. I felt confortable working with bash, Dockerfile, docker compose and github actions. Terraform with AWS was also a little bit challenging but no one can know the providers by heart.
 
 ![Final Result (in case the public ip address doesn't work)](docs/final-result.png)
 
