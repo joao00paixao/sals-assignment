@@ -55,8 +55,8 @@ resource "aws_security_group" "ecs_sg" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    from_port   = 4567
-    to_port     = 4567
+    from_port   = 0
+    to_port     = 9999
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   } 
@@ -138,6 +138,15 @@ resource "aws_ecs_task_definition" "web" {
         retries     = 3
         startPeriod = 10
       }
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = "/ecs/gifmachine-db"
+          "awslogs-region"        = "eu-west-1"
+          "awslogs-stream-prefix" = "ecs"
+          "awslogs-create-group"  = "true"
+        }
+      }
     },
     {
       name  = "web"
@@ -148,12 +157,28 @@ resource "aws_ecs_task_definition" "web" {
       }]
       environment = [
         { name = "RACK_ENV", value = "development" },
-        { name = "DATABASE_URL", value = "postgres://postgres:postgres@db:5432/gifmachine" }
+        { name = "DATABASE_URL", value = "postgres://postgres:postgres@localhost:5432/gifmachine" }
       ]
       dependsOn = [{
         containerName = "db"
         condition     = "HEALTHY"
       }]
+      healthCheck = {
+        command     = ["CMD-SHELL", "curl -f http://localhost:4567/ || exit 1"]
+        interval    = 30
+        timeout     = 5
+        retries     = 3
+        startPeriod = 60
+      }
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = "/ecs/gifmachine-db"
+          "awslogs-region"        = "eu-west-1"
+          "awslogs-stream-prefix" = "ecs"
+          "awslogs-create-group"  = "true"
+        }
+      }
     }
   ])
 }
