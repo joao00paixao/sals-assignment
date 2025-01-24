@@ -72,7 +72,7 @@ I personally felt it was a little hard because of my lack of experience with Rub
 
 This assignment took me 4-5 hours in total with 3-4 different sessions in a span of two days. I hope you enjoy this solution and my thought process behind it!
 
-You can see the final result here: [gifmachine public ip in ECS cluster](http://3.255.116.164:4567/)
+You can see the final result here: [gifmachine public ip in ECS cluster](http://34.245.138.12:4567/)
 
 ## Questions 
 
